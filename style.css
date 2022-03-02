@@ -1,0 +1,112 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(to right, #efb4c3, #b283c7);
+  font-family: 'Source Serif Pro', serif;
+}
+
+section {
+  background-color: rgb(255, 255, 255, 0.5);
+  padding: 1.5rem;
+  width: 80%;
+  margin: 2rem auto;
+  height: 38rem;
+  border-radius: 5px;
+}
+
+/* header area */
+header {
+  /* background-color: antiquewhite; */
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+header h1 {
+  text-align: center;
+  font-size: 1.3rem;
+}
+
+/* form area */
+form {
+  margin-bottom: 2rem;
+}
+form input {
+  /* border: dashed #b283c7 0.2px; */
+  display: inline-block;
+  width: 80%;
+  height: 3rem;
+  border: none;
+}
+
+form button {
+  border: none;
+  width: 16%;
+  height: 3rem;
+  font-size: 1rem;
+  cursor: pointer;
+  color: #b283c7;
+  margin-top: 5px;
+  /* margin-left: -4px; */
+}
+
+/* to do list area */
+/* .todo-list-container {
+  border: solid black 1px;
+} */
+
+.todo-list li {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  margin: 0.5rem;
+  background-color: rgb(178, 131, 199);
+  height: 3rem;
+  padding: 0 0.5rem 0;
+  color: aliceblue;
+  border-radius: 5px;
+}
+
+.item div {
+  padding-top: 1rem;
+}
+
+/* li {
+  height: 50px;
+  background-color: beige;
+  margin: 10px;
+  list-style: none;
+  font-size: 30px;
+  margin: 30px;
+} */
+
+/* .item {
+  display: grid;
+}
+
+.text,
+.icon {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.icon {
+  visibility: hidden;
+  z-index: 2;
+}
+
+.icon:hover {
+  visibility: visible;
+  background-color: aqua;
+}
+
+.text {
+  z-index: 1;
+}
+
+.text:hover {
+  display: block;
+} */
