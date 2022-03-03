@@ -40,6 +40,9 @@ form input {
   width: 80%;
   height: 3rem;
   border: none;
+  font-size: 0.8rem;
+  outline: none;
+  padding: 1rem;
 }
 
 form button {
@@ -54,9 +57,11 @@ form button {
 }
 
 /* to do list area */
-/* .todo-list-container {
-  border: solid black 1px;
-} */
+.todo-list-container {
+  /* border: solid black 1px; */
+  overflow: auto;
+  height: 27rem;
+}
 
 .todo-list li {
   list-style: none;
@@ -72,6 +77,11 @@ form button {
 
 .item div {
   padding-top: 1rem;
+}
+
+i {
+  margin: 5px;
+  cursor: pointer;
 }
 
 @media screen and (min-width: 768px) {
