@@ -1,38 +1,69 @@
 let submitButton = document.querySelector('button');
 let input = document.querySelector('input');
 let list = document.querySelector('ul');
-localStorage.setItem('tasks', '[]');
 
 submitButton.addEventListener('click', addTask);
+document.addEventListener('DOMContentLoaded', pageOnLoad);
 
 function addTask(e) {
   e.preventDefault();
   let task = input.value;
   /////
-  let listItem = document.createElement('li');
-  listItem.classList = 'item';
-  list.appendChild(listItem);
-  ////////
+  if (task !== '') {
+    let listItem = document.createElement('li');
+    listItem.classList = 'item';
+    list.appendChild(listItem);
+    ////////
 
-  listItem.innerHTML = `
-  <div class="text">
-    <p>${task}</p>
-  </div>
-  <div class="icon">
-    <i class="fa-solid fa-trash"></i>
-    <i class="fa-solid fa-pen-to-square"></i>
-  </div>
-  `;
-  input.value = '';
+    listItem.innerHTML = `
+    <div class="text">
+      <p>${task}</p>
+    </div>
+    <div class="icon">
+      <i class="fa-solid fa-trash"></i>
+      <i class="fa-solid fa-pen-to-square"></i>
+    </div>
+    `;
+    input.value = '';
 
-  saveToLocalStorage(task);
+    saveToLocalStorage(task);
+  } else {
+    alert('please add a task');
+  }
 }
 
 function saveToLocalStorage(value) {
   let allTasks = JSON.parse(localStorage.getItem('tasks'));
-  allTasks.push(value);
+  if (allTasks) {
+    allTasks.push(value);
+    localStorage.setItem('tasks', JSON.stringify(allTasks));
+  } else {
+    let allTasks = [];
+    allTasks.push(value);
+    localStorage.setItem('tasks', JSON.stringify(allTasks));
+  }
+}
 
-  localStorage.setItem('tasks', JSON.stringify(allTasks));
+function pageOnLoad() {
+  let allTasks = JSON.parse(localStorage.getItem('tasks'));
+
+  if (allTasks) {
+    allTasks.forEach((task) => {
+      let listItem = document.createElement('li');
+      listItem.classList = 'item';
+      list.appendChild(listItem);
+
+      listItem.innerHTML = `
+      <div class="text">
+        <p>${task}</p>
+      </div>
+      <div class="icon">
+        <i class="fa-solid fa-trash"></i>
+        <i class="fa-solid fa-pen-to-square"></i>
+      </div>
+      `;
+    });
+  }
 }
 
 // let item = document.querySelector('li');
