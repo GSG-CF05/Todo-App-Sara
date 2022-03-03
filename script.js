@@ -1,9 +1,17 @@
 let submitButton = document.querySelector('button');
 let input = document.querySelector('input');
 let list = document.querySelector('ul');
+let deleteBtn = document.getElementsByClassName('delete');
+console.log(deleteBtn);
+
+// for (var i = 0; i < deleteBtn.length; i++) {
+//   console.log(deleteBtn[i]);
+// }
 
 submitButton.addEventListener('click', addTask);
 document.addEventListener('DOMContentLoaded', pageOnLoad);
+
+list.addEventListener('click', deleteElement);
 
 function addTask(e) {
   e.preventDefault();
@@ -20,8 +28,8 @@ function addTask(e) {
       <p>${task}</p>
     </div>
     <div class="icon">
-      <i class="fa-solid fa-trash"></i>
-      <i class="fa-solid fa-pen-to-square"></i>
+      <i class="fa-solid fa-trash delete"></i>
+      <i class="fa-solid fa-pen-to-square edit"></i>
     </div>
     `;
     input.value = '';
@@ -58,14 +66,29 @@ function pageOnLoad() {
         <p>${task}</p>
       </div>
       <div class="icon">
-        <i class="fa-solid fa-trash"></i>
-        <i class="fa-solid fa-pen-to-square"></i>
+        <i class="fa-solid fa-trash delete"></i>
+        <i class="fa-solid fa-pen-to-square edit"></i>
       </div>
       `;
     });
   }
 }
 
+function deleteElement(e) {
+  if (e.target.classList.contains('delete')) {
+    e.target.parentElement.parentElement.remove();
+    let li = e.target.parentElement.parentElement;
+    let taskContent = li.firstElementChild.firstElementChild.textContent;
+    deleteFromLocalStorage(taskContent);
+  }
+}
+
+function deleteFromLocalStorage(taskContent) {
+  let tasks = JSON.parse(localStorage.getItem('tasks'));
+  let index = tasks.indexOf(taskContent);
+  tasks.splice(index, 1);
+  localStorage.setItem('tasks', JSON.stringify(tasks));
+}
 // let item = document.querySelector('li');
 // // console.log(item);
 
