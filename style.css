@@ -13,7 +13,7 @@ section {
   background-color: rgb(255, 255, 255, 0.5);
   padding: 1.5rem;
   width: 80%;
-  margin: 2rem auto;
+  margin: 2rem auto 0;
   height: 38rem;
   border-radius: 5px;
 }
@@ -31,14 +31,25 @@ header h1 {
 }
 
 /* form area */
+
 form {
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  display: flex;
+  /* flex-direction: column; */
+  align-items: center;
+  /* justify-content: space-around; */
+}
+.input-div {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
 }
 form input {
-  /* border: dashed #b283c7 0.2px; */
   display: inline-block;
   width: 80%;
-  height: 3rem;
+  height: 2.7rem;
   border: none;
   font-size: 0.8rem;
   outline: none;
@@ -57,12 +68,22 @@ form input {
 form button {
   border: none;
   width: 16%;
-  height: 3rem;
-  font-size: 1rem;
+  height: 2.7rem;
+  text-align: center;
+  font-size: 2rem;
   cursor: pointer;
   color: #b283c7;
-  margin-top: 5px;
-  /* margin-left: -4px; */
+  /* display: inline-flex;
+  justify-content: center; */
+  padding-top: 3px;
+  /* align-items: center; */
+}
+form button:focus {
+  outline: none;
+  box-shadow: 0px 0px 0px 2px hsla(220, 90%, 56%, 0.2);
+}
+form button:active {
+  transform: translateY(2px);
 }
 
 /* to do list area */
@@ -90,8 +111,9 @@ form button {
 }
 
 i {
-  margin: 5px;
+  margin: 0 5px;
   cursor: pointer;
+  color: #440f5c;
 }
 
 .none {
@@ -100,11 +122,31 @@ i {
 
 @media screen and (min-width: 768px) {
   html {
-    font-size: 20px;
+    font-size: 18px;
   }
 
   section {
     width: 70%;
+    height: 35rem;
+  }
+
+  .todo-list li {
+    font-size: 0.5rem;
+  }
+
+  .todo-list li {
+    font-size: 0.8rem;
+    width: 95%;
+  }
+
+  i {
+    font-size: 1rem;
+  }
+  .check {
+    font-size: 1.2rem;
+  }
+  .todo-list-container {
+    height: 21rem;
   }
 }
 
@@ -114,7 +156,23 @@ i {
   }
 
   section {
-    width: 50%;
+    width: 40%;
+    height: 33rem;
+  }
+
+  .todo-list li {
+    font-size: 0.9rem;
+    width: 95%;
+  }
+
+  i {
+    font-size: 1rem;
+  }
+  .check {
+    font-size: 1.2rem;
+  }
+  .todo-list-container {
+    height: 21rem;
   }
 }
 
