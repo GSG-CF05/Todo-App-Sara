@@ -103,13 +103,21 @@ form button:active {
   padding: 0 0.5rem 0;
   color: aliceblue;
   border-radius: 5px;
-  font-size: 1rem;
+  font-size: 0.8rem;
 }
 
 .item div {
   padding-top: 1rem;
 }
 
+.text {
+  width: 80%;
+}
+.icon {
+  display: flex;
+  flex-direction: row-reverse;
+  width: 20%;
+}
 i {
   margin: 0 5px;
   cursor: pointer;

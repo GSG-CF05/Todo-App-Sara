@@ -24,8 +24,8 @@ function addTask(e) {
       <p>${task}</p>
     </div>
     <div class="icon">
-      <i class="fa-solid fa-trash delete"></i>
       <i class="fa-solid fa-pen-to-square edit"></i>
+      <i class="fa-solid fa-trash delete"></i> 
     </div>
     `;
     input.value = '';
@@ -62,8 +62,8 @@ function pageOnLoad() {
         <p>${task}</p>
       </div>
       <div class="icon">
-        <i class="fa-solid fa-trash delete"></i>
         <i class="fa-solid fa-pen-to-square edit"></i>
+        <i class="fa-solid fa-trash delete"></i>
       </div>
       `;
     });
@@ -133,13 +133,13 @@ function saveEdit(e, value, oldValue) {
     tasks.splice(oldIndex, 1, value);
     localStorage.setItem('tasks', JSON.stringify(tasks));
     e.target.parentElement.innerHTML = `
-    <i class="fa-solid fa-trash delete"></i>
     <i class="fa-solid fa-pen-to-square edit"></i>
+    <i class="fa-solid fa-trash delete"></i>
     `;
   } else {
     e.target.parentElement.innerHTML = `
-    <i class="fa-solid fa-trash delete"></i>
     <i class="fa-solid fa-pen-to-square edit"></i>
+    <i class="fa-solid fa-trash delete"></i>
     `;
   }
 }
