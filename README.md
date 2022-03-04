@@ -2,6 +2,8 @@
 
 ### You can check it out [here](https://gsg-cf05.github.io/Todo-App-Sara/)
 
+### You can watch a [demo](https://drive.google.com/file/d/1J9yf3go9OYIVytS_lHVR93TgCwYGUCdz/view?usp=sharing)
+
 ---
 
 ## Project description
