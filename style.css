@@ -44,7 +44,16 @@ form input {
   outline: none;
   padding: 1rem;
 }
-
+.edit-input {
+  display: inline-block;
+  height: 2rem;
+  font-size: 1rem;
+  outline: none;
+  border: none;
+  margin-top: -9px;
+  background-color: rgba(255, 255, 255, 0);
+  color: white;
+}
 form button {
   border: none;
   width: 16%;
@@ -73,6 +82,7 @@ form button {
   padding: 0 0.5rem 0;
   color: aliceblue;
   border-radius: 5px;
+  font-size: 1rem;
 }
 
 .item div {
@@ -82,6 +92,10 @@ form button {
 i {
   margin: 5px;
   cursor: pointer;
+}
+
+.none {
+  display: none;
 }
 
 @media screen and (min-width: 768px) {

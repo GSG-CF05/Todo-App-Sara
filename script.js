@@ -2,16 +2,11 @@ let submitButton = document.querySelector('button');
 let input = document.querySelector('input');
 let list = document.querySelector('ul');
 let deleteBtn = document.getElementsByClassName('delete');
-console.log(deleteBtn);
-
-// for (var i = 0; i < deleteBtn.length; i++) {
-//   console.log(deleteBtn[i]);
-// }
 
 submitButton.addEventListener('click', addTask);
 document.addEventListener('DOMContentLoaded', pageOnLoad);
-
 list.addEventListener('click', deleteElement);
+list.addEventListener('click', editElement);
 
 function addTask(e) {
   e.preventDefault();
@@ -20,6 +15,7 @@ function addTask(e) {
   if (task !== '') {
     let listItem = document.createElement('li');
     listItem.classList = 'item';
+    listItem.addEventListener('dblclick', editContent);
     list.appendChild(listItem);
     ////////
 
@@ -89,50 +85,61 @@ function deleteFromLocalStorage(taskContent) {
   tasks.splice(index, 1);
   localStorage.setItem('tasks', JSON.stringify(tasks));
 }
-// let item = document.querySelector('li');
-// // console.log(item);
 
-// item.addEventListener('click', printHi);
+function editContent(e) {
+  console.log('item is double clicked');
+}
 
-// function printHi(e) {
-//   let content = e.target.textContent;
-//   console.log(e.target.innerHTML.includes('<'));
-//   if (!e.target.innerHTML.includes('<')) {
-//     e.target.innerHTML = '<i class="fa fa-trash-o" aria-hidden="true"></i>';
-//     console.log(e.target.innerHTML);
+function editElement(e) {
+  let paraDiv = e.target.parentElement.parentElement.firstElementChild;
+  let para =
+    e.target.parentElement.parentElement.firstElementChild.firstElementChild;
+  let paraContent = para.textContent;
+  let checkInput = document.getElementsByClassName('edit-input');
+  let iconDiv = document.getElementsByClassName('icon')[0];
 
-//     console.log(content);
-//   } else {
-//     e.target.innerHTML = content;
-//   }
-// }
+  if (e.target.classList.contains('edit')) {
+    if (checkInput.length === 0) {
+      addEditInput(e.target, paraDiv, para, iconDiv);
+    }
+  } else if (e.target.classList.contains('check')) {
+    let checkInput = document.getElementsByClassName('edit-input')[0];
+    saveEdit(e, checkInput.value, paraContent);
+    checkInput.remove();
+    para.style.display = 'block';
+    if (checkInput.value !== '') {
+      para.textContent = checkInput.value;
+    }
+  }
+}
 
-// [
-//   arr[0][0],
-//   arr[0][1],
-//   arr[0][2],
-//   arr[1][2],
-//   arr[2][2],
-//   arr[2][1],
-//   arr[2][0],
-//   arr[1][0],
-//   arr[1][1],
-// ];
+function addEditInput(e, paraDiv, para, iconDiv) {
+  e.parentElement.innerHTML = '<i class="fa-solid fa-square-check check"></i>';
 
-// let textDiv = document.createElement('div');
-// textDiv.classList = 'text';
-// listItem.appendChild(textDiv);
-// listItem.appendChild(textDiv);
+  ////////
+  let editInput = document.createElement('input');
+  editInput.type = 'text';
+  editInput.classList = 'edit-input';
+  editInput.value = para.textContent;
+  paraDiv.appendChild(editInput);
+  para.style.display = 'none';
+}
 
-// //////////
-
-// let text = document.createElement('p');
-// text.textContent = task;
-// textDiv.appendChild(text);
-
-// ///
-// let iconDiv = document.createComment('div');
-// iconDiv.classList = 'icon';
-// listItem.appendChild(iconDiv);
-
-// iconDiv.innerHTML = '<i class="fa-solid fa-trash"></i>';
+function saveEdit(e, value, oldValue) {
+  let tasks = JSON.parse(localStorage.getItem('tasks'));
+  let index = tasks.indexOf(value);
+  let oldIndex = tasks.indexOf(oldValue);
+  if (index === -1 && value !== '') {
+    tasks.splice(oldIndex, 1, value);
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+    e.target.parentElement.innerHTML = `
+    <i class="fa-solid fa-trash delete"></i>
+    <i class="fa-solid fa-pen-to-square edit"></i>
+    `;
+  } else {
+    e.target.parentElement.innerHTML = `
+    <i class="fa-solid fa-trash delete"></i>
+    <i class="fa-solid fa-pen-to-square edit"></i>
+    `;
+  }
+}
