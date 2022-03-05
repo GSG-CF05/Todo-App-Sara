@@ -11,10 +11,10 @@ body {
 
 section {
   background-color: rgb(255, 255, 255, 0.5);
-  padding: 1.5rem;
-  width: 80%;
+  padding: 1.5rem 0.5rem;
+  width: 90%;
   margin: 2rem auto 0;
-  height: 38rem;
+  height: 36rem;
   border-radius: 5px;
 }
 
@@ -90,7 +90,7 @@ form button:active {
 .todo-list-container {
   /* border: solid black 1px; */
   overflow: auto;
-  height: 27rem;
+  height: 24rem;
 }
 
 .todo-list li {
@@ -122,6 +122,7 @@ i {
   margin: 0 5px;
   cursor: pointer;
   color: #440f5c;
+  font-size: 0.8rem;
 }
 
 .none {
@@ -138,13 +139,13 @@ i {
     height: 35rem;
   }
 
-  .todo-list li {
+  /* .todo-list li {
     font-size: 0.5rem;
-  }
+  } */
 
   .todo-list li {
     font-size: 0.8rem;
-    width: 95%;
+    width: 97%;
   }
 
   i {
@@ -152,9 +153,6 @@ i {
   }
   .check {
     font-size: 1.2rem;
-  }
-  .todo-list-container {
-    height: 21rem;
   }
 }
 
@@ -169,8 +167,8 @@ i {
   }
 
   .todo-list li {
-    font-size: 0.9rem;
-    width: 95%;
+    font-size: 0.8rem;
+    width: 97%;
   }
 
   i {
@@ -183,40 +181,3 @@ i {
     height: 21rem;
   }
 }
-
-/* li {
-  height: 50px;
-  background-color: beige;
-  margin: 10px;
-  list-style: none;
-  font-size: 30px;
-  margin: 30px;
-} */
-
-/* .item {
-  display: grid;
-}
-
-.text,
-.icon {
-  grid-column: 1;
-  grid-row: 1;
-}
-
-.icon {
-  visibility: hidden;
-  z-index: 2;
-}
-
-.icon:hover {
-  visibility: visible;
-  background-color: aqua;
-}
-
-.text {
-  z-index: 1;
-}
-
-.text:hover {
-  display: block;
-} */
