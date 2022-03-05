@@ -9,6 +9,7 @@ body {
   font-family: 'Source Serif Pro', serif;
 }
 
+/* ----- Section style ----- */
 section {
   background-color: rgb(255, 255, 255, 0.5);
   padding: 1.5rem 0.5rem;
@@ -17,10 +18,10 @@ section {
   height: 36rem;
   border-radius: 5px;
 }
+/* --------------------------- */
 
-/* header area */
+/* ------------ Header Style -------------- */
 header {
-  /* background-color: antiquewhite; */
   padding: 0.5rem;
   margin-bottom: 0.5rem;
 }
@@ -29,24 +30,24 @@ header h1 {
   text-align: center;
   font-size: 1.3rem;
 }
+/* ----------------------------------------- */
 
-/* form area */
+/* ------------- Form style ------------ */
 
 form {
   margin-bottom: 1.5rem;
   text-align: center;
   display: flex;
-  /* flex-direction: column; */
   align-items: center;
-  /* justify-content: space-around; */
 }
+
 .input-div {
   width: 80%;
   margin: 0 auto;
   display: flex;
   align-items: center;
 }
-form input {
+.input-div input {
   display: inline-block;
   width: 80%;
   height: 2.7rem;
@@ -55,17 +56,8 @@ form input {
   outline: none;
   padding: 1rem;
 }
-.edit-input {
-  display: inline-block;
-  height: 2rem;
-  font-size: 1rem;
-  outline: none;
-  border: none;
-  margin-top: -9px;
-  background-color: rgba(255, 255, 255, 0);
-  color: white;
-}
-form button {
+
+.input-div button {
   border: none;
   width: 16%;
   height: 2.7rem;
@@ -73,22 +65,19 @@ form button {
   font-size: 2rem;
   cursor: pointer;
   color: #b283c7;
-  /* display: inline-flex;
-  justify-content: center; */
   padding-top: 3px;
-  /* align-items: center; */
 }
-form button:focus {
+.input-div button:focus {
   outline: none;
-  box-shadow: 0px 0px 0px 2px hsla(220, 90%, 56%, 0.2);
+  box-shadow: 0px 0px 0px 2px hsla(313, 61%, 35%, 0.2);
 }
-form button:active {
+.input-div button:active {
   transform: translateY(2px);
 }
+/* ----------------------------------------------- */
 
-/* to do list area */
+/* ------------ To-do list style -------------- */
 .todo-list-container {
-  /* border: solid black 1px; */
   overflow: auto;
   height: 24rem;
 }
@@ -110,10 +99,10 @@ form button:active {
   padding-top: 1rem;
 }
 
-.text {
+li .text {
   width: 80%;
 }
-.icon {
+li .icon {
   display: flex;
   flex-direction: row-reverse;
   width: 20%;
@@ -124,11 +113,22 @@ i {
   color: #440f5c;
   font-size: 0.8rem;
 }
+/* ------------------------------------------ */
 
-.none {
-  display: none;
+/* --- This class is for the new added input 'for the edit' --- */
+.edit-input {
+  display: inline-block;
+  height: 2rem;
+  font-size: 1rem;
+  outline: none;
+  border: none;
+  margin-top: -9px;
+  background-color: rgba(255, 255, 255, 0);
+  color: white;
 }
+/* ------------------------- */
 
+/* ---------- Media Queries -------- */
 @media screen and (min-width: 768px) {
   html {
     font-size: 18px;
@@ -138,10 +138,6 @@ i {
     width: 70%;
     height: 35rem;
   }
-
-  /* .todo-list li {
-    font-size: 0.5rem;
-  } */
 
   .todo-list li {
     font-size: 0.8rem;
@@ -181,3 +177,4 @@ i {
     height: 21rem;
   }
 }
+/* ----------------------------------- */
