@@ -8,7 +8,7 @@
 
 ## Project description
 
-It's a simple to-do web app that its users to create their own to-do list which can be easily modified.
+It's a simple to-do web app where its users can create their own to-do list which can be easily modified.
 
 ---
 
