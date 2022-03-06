@@ -95,23 +95,39 @@ form {
   font-size: 0.8rem;
 }
 
-.item div {
+/* .item div {
   padding-top: 1rem;
-}
+} */
 
 li .text {
   width: 80%;
+}
+li .text p {
+  height: 100%;
+  padding-top: 1rem;
 }
 li .icon {
   display: flex;
   flex-direction: row-reverse;
   width: 20%;
+  padding-top: 1rem;
+  color: #440f5c;
 }
 i {
   margin: 0 5px;
   cursor: pointer;
-  color: #440f5c;
   font-size: 0.8rem;
+}
+
+.todo-list .completed {
+  background-color: #adaaab;
+  color: black;
+}
+
+.completed-task {
+  text-decoration: line-through;
+  color: black;
+  /* text-decoration-color: #f1ecf3; */
 }
 /* ------------------------------------------ */
 
@@ -125,7 +141,9 @@ i {
   margin-top: -9px;
   background-color: rgba(255, 255, 255, 0);
   color: white;
+  margin-top: 0.5rem;
 }
+
 /* ------------------------- */
 
 /* ---------- Media Queries -------- */
@@ -140,7 +158,7 @@ i {
   }
 
   .todo-list li {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     width: 97%;
   }
 

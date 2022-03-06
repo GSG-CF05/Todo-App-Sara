@@ -9,21 +9,21 @@ submitButton.addEventListener('click', addTask); // To add an element
 document.addEventListener('DOMContentLoaded', pageOnLoad); // To have the tasks on page when loaded
 list.addEventListener('click', deleteElement); // click event on the ul for deleting items
 list.addEventListener('click', editElement); // click event on the ul for editing items
+list.addEventListener('click', finishedTask);
 
-// To add list items on the page
+// ------------------------ To add list items on the page ----------------------- //
+// ------------------------------------------------------------------------------ //
 function addTask(e) {
-  // First prevent the button from reloading the page
-  e.preventDefault();
-  // Get the value from the input
-  let task = input.value;
+  e.preventDefault(); // First prevent the button from reloading the page
+  let task = input.value; // Get the value from the input
+
   // check if the value is not an empty string
   if (task !== '') {
-    // Get the li element
-    let listItem = document.createElement('li');
-    // Give the new li the class 'item'
-    listItem.classList = 'item';
-    // Append the new li to the ul
-    list.appendChild(listItem);
+    let listItem = document.createElement('li'); // Get the li element
+
+    listItem.classList = 'item'; // Give the new li the class 'item'
+
+    list.appendChild(listItem); // Append the new li to the ul
 
     // Give the new li the content below// ${task} => input value
     listItem.innerHTML = `
@@ -46,25 +46,29 @@ function addTask(e) {
   }
 }
 
-// To Saves the task in the local storage
+// -------------------- To Save the task in the local storage ---------------------- //
+// --------------------------------------------------------------------------------- //
 function saveToLocalStorage(value) {
-  // Get the task array and check if it exists
-  let allTasks = JSON.parse(localStorage.getItem('tasks'));
+  let taskObject = {
+    todo: value,
+    status: 'incomplete',
+  };
+  let allTasks = JSON.parse(localStorage.getItem('tasks')); // Get the task array and check if it exists
   if (allTasks) {
     // push the new task to task array and save it again in the local storage
-    allTasks.push(value);
+    allTasks.push(taskObject);
     localStorage.setItem('tasks', JSON.stringify(allTasks));
   } else {
     // If there is no task array, create an empty array for the tasks
     let allTasks = [];
     // push the task and save the array in the local storage
-    allTasks.push(value);
+    allTasks.push(taskObject);
     localStorage.setItem('tasks', JSON.stringify(allTasks));
   }
 }
 
-// This function is executed when the page is loaded
-// to get the list on page even after reloading the page
+// ------------------- to get the list on page even after reloading the page ------------ //
+// -------------------------------------------------------------------------------------- //
 function pageOnLoad() {
   // Get the task array from local storage and test if it exists
   let allTasks = JSON.parse(localStorage.getItem('tasks'));
@@ -72,26 +76,47 @@ function pageOnLoad() {
   if (allTasks) {
     // Loop over the array
     allTasks.forEach((task) => {
-      // create a new li for each task
-      let listItem = document.createElement('li');
-      listItem.classList = 'item';
-      // Append each li to th ul
-      list.appendChild(listItem);
-      // Give each li the content below
-      listItem.innerHTML = `
+      if (task.status === 'incomplete') {
+        // create a new li for each task
+        let listItem = document.createElement('li');
+        listItem.classList = 'item';
+
+        // Append each li to th ul
+        list.appendChild(listItem);
+        // Give each li the content below
+        listItem.innerHTML = `
       <div class="text">
-        <p>${task}</p>
+        <p>${task.todo}</p>
       </div>
       <div class="icon">
         <i class="fa-solid fa-pen-to-square edit"></i>
         <i class="fa-solid fa-trash delete"></i>
       </div>
       `;
+      } else {
+        // create a new li for each task
+        let listItem = document.createElement('li');
+        listItem.classList = 'item';
+        listItem.classList.add('completed');
+
+        // Append each li to th ul
+        list.appendChild(listItem);
+        // Give each li the content below
+        listItem.innerHTML = `
+      <div class="text">
+        <p class="completed-task">${task.todo}</p>
+      </div>
+      <div class="icon completed">
+        <i class="fa-solid fa-pen-to-square edit"></i>
+        <i class="fa-solid fa-trash delete"></i>
+      </div>
+      `;
+      }
     });
   }
 }
-
-// For deleting a list item from the page
+// ------------------ to delete a list item from the page ---------------------- //
+// ----------------------------------------------------------------------------- //
 function deleteElement(e) {
   //When ul is clicked, it checks is the clicked element has the 'delete' class
   if (e.target.classList.contains('delete')) {
@@ -106,19 +131,26 @@ function deleteElement(e) {
   }
 }
 
-// to delete the task from local storage
+// ----------------- to delete the task from local storage ------------------ //
+// -------------------------------------------------------------------------- //
 function deleteFromLocalStorage(taskContent) {
   //get the tasks array from the local storage
   let tasks = JSON.parse(localStorage.getItem('tasks'));
+  let taskValues = [];
+  tasks.forEach((task) => {
+    taskValues.push(task.todo);
+  });
+
   // save the index of given task in a variable
-  let index = tasks.indexOf(taskContent);
+  let index = taskValues.indexOf(taskContent);
   // then delete the task from the task array using splice
   tasks.splice(index, 1);
   // save the new array in the local storage
   localStorage.setItem('tasks', JSON.stringify(tasks));
 }
 
-// ---------- to edit a task ------------- //
+// --------------------------- to edit a task --------------------------- //
+// ---------------------------------------------------------------------- //
 function editElement(e) {
   // get access to the div which contains the paragraph
   let paraDiv = e.target.parentElement.parentElement.firstElementChild;
@@ -156,7 +188,8 @@ function editElement(e) {
   }
 }
 
-// -------- to add input element for the edit --------- //
+// ------------------- to add input element for the edit ------------------ //
+// ------------------------------------------------------------------------ //
 function addEditInput(e, paraDiv, para) {
   // change the icons from (delete - edit) to a (check) icon
   e.parentElement.innerHTML = '<i class="fa-solid fa-square-check check"></i>';
@@ -175,18 +208,23 @@ function addEditInput(e, paraDiv, para) {
   //// ---- basically change the paragraph with an input in order to modify the task ------//
 }
 
-// ------------- to save the edited task in local storage ----------- //
+// ----------------- to save the edited task in local storage ---------------- //
+// --------------------------------------------------------------------------- //
 function saveEdit(e, value, oldValue) {
   // get the task array
   let tasks = JSON.parse(localStorage.getItem('tasks'));
+  let taskValues = [];
+  tasks.forEach((task) => {
+    taskValues.push(task.todo);
+  });
   // save the indexes of the new task value and old one in variables
-  let index = tasks.indexOf(value);
-  let oldIndex = tasks.indexOf(oldValue);
+  let index = taskValues.indexOf(value);
+  let oldIndex = taskValues.indexOf(oldValue);
 
   // if the new task isn't in the array and != ''
   if (index === -1 && value !== '') {
     // replace the old task with the new one and save to local storage
-    tasks.splice(oldIndex, 1, value);
+    tasks[oldIndex].todo = value;
     localStorage.setItem('tasks', JSON.stringify(tasks));
 
     // change the icons from (check) to (delete- edit)
@@ -200,5 +238,40 @@ function saveEdit(e, value, oldValue) {
     <i class="fa-solid fa-pen-to-square edit"></i>
     <i class="fa-solid fa-trash delete"></i>
     `;
+  }
+}
+
+// ----------------------- when the task is finished --------------------- //
+// ----------------------------------------------------------------------- //
+function finishedTask(e) {
+  // get the para content
+  // get access to li element
+  // get the tasks array from local storage
+  let task = e.target.textContent;
+  let listItem = e.target.parentElement.parentElement; // li
+  let tasks = JSON.parse(localStorage.getItem('tasks'));
+  let taskValues = []; // take only the todos
+  tasks.forEach((task) => {
+    taskValues.push(task.todo);
+  });
+  let index = taskValues.indexOf(task); // the index of the task
+  if (e.target.tagName === 'P') {
+    if (listItem.classList.contains('completed')) {
+      // remove class = completed from both the li and icons div
+      // remove class = completed-task from the para
+      listItem.classList.remove('completed');
+      listItem.children[1].classList.remove('completed');
+      e.target.classList.remove('completed-task');
+      tasks[index].status = 'incomplete'; // change the status of the task
+      localStorage.setItem('tasks', JSON.stringify(tasks)); // save the changes
+    } else {
+      // give both the li and icons div class = completed from
+      // give the para class = completed-task
+      listItem.classList.add('completed');
+      listItem.children[1].classList.add('completed');
+      e.target.classList = 'completed-task';
+      tasks[index].status = 'completed';
+      localStorage.setItem('tasks', JSON.stringify(tasks));
+    }
   }
 }
