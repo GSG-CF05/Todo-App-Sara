@@ -93,6 +93,7 @@ form {
   color: aliceblue;
   border-radius: 5px;
   font-size: 0.8rem;
+  cursor: pointer;
 }
 
 /* .item div {
