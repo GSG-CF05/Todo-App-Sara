@@ -117,7 +117,11 @@ li .icon {
 i {
   margin: 0 5px;
   cursor: pointer;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
+}
+
+.check {
+  font-size: 1.1rem;
 }
 
 .todo-list .completed {
